@@ -14,6 +14,9 @@ export class AppComponent implements OnInit	 {
   votosBolean:any[] = [];
   horizontal:boolean = false;
   vertical:boolean = false;
+  list:boolean = false;
+  grid:boolean = false;
+  math:any = Math;
   ngOnInit(): void {
    if(localStorage.getItem('datos')){
      this.data = JSON.parse(this.datos || '{}')
@@ -26,7 +29,7 @@ export class AppComponent implements OnInit	 {
               "name": "Kanye West",
               "description": "Born in Atlanta and raised in Chicago, West was first known as a producer for Roc-A-Fella Records in the early 2000s, producing singles for several mainstream artists.",
               "category": "entertainment",
-              "picture": "../assets/img/kayne.jpg",
+              "picture": "../assets/img/kayne.png",
               "lastUpdated": "2020-03-10T23:08:57.892Z",
               "votes": {
                   "positive": 23,
@@ -37,7 +40,7 @@ export class AppComponent implements OnInit	 {
               "name": "Mark Zuckerberg",
               "description": "Born in White Plains, New York, Zuckerberg attended Harvard University, where he launched the Facebook social networking service from his dormitory room on February 4, 2004.",
               "category": "business",
-              "picture": "../assets/img/mark.jpg",
+              "picture": "../assets/img/mark.png",
               "lastUpdated": "2021-02-14T23:10:19.134Z",
               "votes": {
                   "positive": 418,
@@ -48,7 +51,7 @@ export class AppComponent implements OnInit	 {
               "name": "Cristina Fernández de Kirchner",
               "description": "Her first term of office started with a conflict with the agricultural sector, and her proposed taxation system was rejected.",
               "category": "politics",
-              "picture": "../assets/img/cristina.jpg",
+              "picture": "../assets/img/cristina.png",
               "lastUpdated": "2020-12-10T23:41:07.120Z",
               "votes": {
                   "positive": 45,
@@ -59,7 +62,7 @@ export class AppComponent implements OnInit	 {
               "name": "Malala Yousafzai",
               "description": "The daughter of educational activist Ziauddin, Yousafzai was born to a Pashtun family in Mingora, Khyber Pakhtunkhwa, Pakistan. Her family came to run a chain of schools in the region.",
               "category": "politics",
-              "picture": "../assets/img/malala.jpg",
+              "picture": "../assets/img/malala.png",
               "lastUpdated": "2020-12-10T23:41:07.120Z",
               "votes": {
                   "positive": 18,
@@ -70,7 +73,7 @@ export class AppComponent implements OnInit	 {
               "name": "Elon Musk",
               "description": "In 2002, Musk founded SpaceX, an aerospace manufacturer and space transport services company, of which he is CEO, CTO, and lead designer.",
               "category": "business",
-              "picture": "../assets/img/elon.jpg",
+              "picture": "../assets/img/elon.png",
               "lastUpdated": "2020-12-20T23:43:38.041Z",
               "votes": {
                   "positive": 1237,
@@ -81,7 +84,7 @@ export class AppComponent implements OnInit	 {
               "name": "Greta Thumberg",
               "description": "Thunberg's activism started after convincing her parents to adopt several lifestyle choices to reduce their own carbon footprint.",
               "category": "environment",
-              "picture": "../assets/img/greta.jpg",
+              "picture": "../assets/img/greta.png",
               "lastUpdated": "2021-02-26T23:44:50.326Z",
               "votes": {
                   "positive": 118,
@@ -101,7 +104,7 @@ export class AppComponent implements OnInit	 {
    localStorage.setItem('datos', JSON.stringify(this.data)) 
   }
   bajar(i:any){
-    this.data[i].votes.negative = this.data[i].votes.negative - 1
+    this.data[i].votes.negative = this.data[i].votes.negative + 1
     console.log (this.data[i])
   }
   positivo(i:any){
@@ -127,12 +130,12 @@ export class AppComponent implements OnInit	 {
   }
   votar(i:any){
    this.votosBolean[i] = true
-   console.log(this.votosBolean)
-    if(this.up){
-    this.subir(i)
+   if(this.up){
+     this.subir(i)
     } else if(this.down){
       this.bajar(i)
     }
+    console.log(this.data)
   }
   voteAgain(i:any){
    this.votosBolean[i] = false
@@ -141,12 +144,16 @@ export class AppComponent implements OnInit	 {
   }
   cambioDiseno(estilo:any){
     if(estilo == 'horizontal'){
-      this.horizontal = true;
-      this.vertical = false;
+    /*   this.horizontal = true;
+      this.vertical = false; */
+      this.list = false;
+      this.grid = true;
     }else if(estilo == 'vertical'){
       console.log('hola')
-      this.vertical = true;
-      this.horizontal = false;
+      /* this.vertical = true;
+      this.horizontal = false; */
+      this.list = true;
+      this.grid = false
     }
   }
 }
