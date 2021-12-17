@@ -29,7 +29,7 @@ export class AppComponent implements OnInit	 {
               "name": "Kanye West",
               "description": "Born in Atlanta and raised in Chicago, West was first known as a producer for Roc-A-Fella Records in the early 2000s, producing singles for several mainstream artists.",
               "category": "entertainment",
-              "picture": "../assets/img/kayne.png",
+              "picture": "../assets/img/kanye.png",
               "lastUpdated": "2020-03-10T23:08:57.892Z",
               "votes": {
                   "positive": 23,
@@ -112,6 +112,17 @@ export class AppComponent implements OnInit	 {
     boton?.removeAttribute('disabled');
     boton?.classList.remove('btn-danger')
     boton?.classList.add('btn-primary')
+    let arriba = document.getElementById(`positivo${i}`);
+    let abajo = document.getElementById(`negativo${i}`);
+    console.log(arriba,abajo)
+    if(!arriba?.classList.contains("borde-blanco")){
+      arriba?.classList.add("borde-blanco")
+      console.log("hola")
+    } 
+     if(abajo?.classList.contains("borde-blanco")){
+      abajo.classList.remove("borde-blanco")
+      console.log("hola2")
+    }
     if(this.up == false){
       this.up = true;
       this.down = false
@@ -123,6 +134,16 @@ export class AppComponent implements OnInit	 {
     boton?.removeAttribute('disabled');
    boton?.classList.remove('btn-primary')
     boton?.classList.add('btn-danger')
+    let arriba = document.getElementById(`positivo${i}`);
+    let abajo = document.getElementById(`negativo${i}`)
+    console.log(arriba,abajo)
+    if(!abajo?.classList.contains("borde-blanco")){
+      abajo?.classList.add("borde-blanco")
+    } 
+    
+    if(arriba?.classList.contains("borde-blanco")){
+      arriba.classList.remove("borde-blanco")
+    }
     if(this.down == false){
       this.down = true;
       this.up = false

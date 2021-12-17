@@ -392,7 +392,7 @@ main[role="main"] {
 main h2,
 main h3,
 main h4 {
-    color: var(--color-dark-gray);
+    color: var(--color-white);
     font-weight: 300;
 }
 
@@ -739,5 +739,13 @@ main h2 {
 }
 .bg-pro{
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: 300px 300px;
+    /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, #888888 19.79%, #666666 50%, rgba(51, 51, 51, 0.6) 71.88%); */
+}
+.linear{
+    background: linear-gradient(-268deg, rgba(0, 0, 0, 0.0001) 0%, #888888 19.79%, #666666 50%, rgba(51, 51, 51, 0.6) 71.88%);
+    background-size: calc(100% - 250px) 100% ;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    
 }

@@ -69,68 +69,74 @@
 
   <main role="main" class="flex-wrap-media d-flex align-items-center justify-media overflow-auto" [ngClass]="{'flex-column': vertical, 'flex-initial':horizontal}">
       <!-- Start: Implementation -->
-      <div style="min-width: 300px;" class="mx-xl-3 mx-lg-3 mx-md-3 mx-sm-1 mx-3 mb-3" [ngClass]="{'col-personalizado':grid, 'col-12':list, 'col-xl-12':list, 'col-lg-12':list, 'col-md-12':list, 'çol-sm-12':list}" *ngFor="let persona of data; let i = index">
+      <div style="min-width: 300px;" class="mx-xl-3 mx-lg-3 mx-md-3 mx-sm-1 mx-3 mb-3 linear" [ngClass]="{'col-personalizado':grid, 'col-12':list, 'col-xl-12':list, 'col-lg-12':list, 'col-md-12':list, 'çol-sm-12':list}" *ngFor="let persona of data; let i = index">
         
         <div class="featured-card__content bg-pro" [ngStyle]="{'background-image': 'url(' + persona.picture + ')'}">
-            <h2 class="featured-card__title">{{persona.name + i}}</h2>
-           
-            <p class="featured-card__desc">
-            </p>
-            <p>
-              {{persona.description}}
+          <div class="d-flex">
+            <div class="content-information">
 
-            </p>
-           <div class="d-flex">
-             <p>
-
-               Category:
-             </p>
-            
-            <p>
-               {{persona.category}}
-
-             </p>
-             <br>
+              <h2 class="featured-card__title white">{{persona.name}}</h2>
+             
+              <p class="featured-card__desc">
+              </p>
+              <p class="text-descripcion">
+                {{persona.description}}
+  
+              </p>
+             <div class="d-flex">
+               <p>
+  
+                 Category:
+               </p>
+              
+              <p>
+                 {{persona.category}}
+  
+               </p>
+               <br>
+              </div>
+              <p *ngIf="votosBolean[i] == true">
+                Thanks for vote
+              </p>
             </div>
-            <p *ngIf="votosBolean[i] == true">
-              Thanks for vote
-            </p>
-            <div class="d-flex">
+
+            <div class="d-flex justify-content-end mh-m">
+  
+              <button *ngIf="votosBolean[i] == false" [id]="'positivo' + i"  class="icon-button px-10 py-1" (click)="positivo(i)" aria-label="thumbs up">
+                  <img class="img-button" src="assets/img/thumbs-up.svg" alt="thumbs up" />
+              </button>
+              <button *ngIf="votosBolean[i] == false" [id]="'negativo' + i" class="icon-button ml-12 px-10 py-1" (click)="negativo(i)" aria-label="thumbs down">
+                <img src="assets/img/thumbs-down.svg"  class=" img-button" alt="thumbs down" />
+              </button>
+              <button *ngIf="votosBolean[i] == false" class="btn btn-black ml-12" disabled (click)="votar(i)" [id]="'a' + i" >
+                  Vote Now
+              </button>
+              <button *ngIf="votosBolean[i] == true" class="btn btn-black" (click)="voteAgain(i)" [id]="'aa' + i">
+                Vote Again
+            </button>
+            </div>
+          </div>
+            <!-- <div class="d-flex">
              <p class="me-3">
                Positives: {{((persona.votes.positive*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)}}
              </p>
              <p>
                Negatives : {{((persona.votes.negative*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)}}
              </p>
-            </div>
-            <div class="d-flex justify-content-end">
-
-              <button style="min-height: 30px; min-width: 30px;" class="icon-button" (click)="positivo(i)" aria-label="thumbs up">
-                  <img style="max-width: 16px;" class="w-100" src="assets/img/thumbs-up.svg" alt="thumbs up" />
-              </button>
-              <button style="min-height: 30px; min-width: 30px;" class="icon-button" (click)="negativo(i)" aria-label="thumbs down">
-                <img src="assets/img/thumbs-down.svg" style="max-width: 16px;" class="w-100" alt="thumbs down" />
-              </button>
-              <button *ngIf="votosBolean[i] == false" class="btn btn-success" disabled (click)="votar(i)" [id]="'a' + i" >
-                  Vote Now
-              </button>
-              <button *ngIf="votosBolean[i] == true" class="btn btn-warning" (click)="voteAgain(i)" [id]="'aa' + i">
-                Vote Again
-            </button>
-            </div>
+            </div> -->
             <div class="featured-card__buttons">
               <div class="d-flex w-100">
-                <div class="progeso d-flex align-items-center" [style.width.%]="((persona.votes.positive*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)">
-                  <img src="assets/img/thumbs-up.svg" style="max-width: 15px;" class="ms-3 w-100" alt="thumbs up" />
+                <div class="progeso d-flex align-items-center py-11m" [style.width.%]="((persona.votes.positive*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)">
+                  <img src="assets/img/thumbs-up.svg" class="ms-3 img-pulgares" alt="thumbs up" />
                   <p class=" white mb-0">
-                  {{((persona.votes.positive*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)}}
+                  {{((persona.votes.positive*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)}} %
                   </p>
                 </div>
-                <div class="progreso2 d-flex align-items-center" [style.width.%]="((persona.votes.negative*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)">
+                <div class="progreso2 d-flex align-items-center justify-content-end" [style.width.%]="((persona.votes.negative*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)">
                   <p class="white mb-0">
-                   {{math.abs(((persona.votes.negative*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2))}}
+                   {{math.abs(((persona.votes.negative*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2))}} %
                   </p>
-                  <img src="assets/img/thumbs-down.svg" class="me-3 w-100" style="max-width: 15px;" alt="thumbs down" />
+                  <img src="assets/img/thumbs-down.svg" class="me-3 img-pulgares" alt="thumbs down" />
                 </div>
               </div>
             </div>
