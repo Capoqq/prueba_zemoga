@@ -43,7 +43,7 @@
     </button>
   </div>
 </nav> -->
-<nav role='navigation'>
+<!-- <nav role='navigation'>
   <div id="menuToggle">
    
     <input type="checkbox" />
@@ -52,39 +52,69 @@
     <span></span>
     <ul id="menu">
      <li>
-      <button class="btn-primary" (click)="cambioDiseno('horizontal')">
+      <button class="btn-primary" (click)="cambioDiseno()">
         horizontal
       </button>
      </li>
      <li>
-      <button class="btn-primary" (click)="cambioDiseno('vertical')">
+      <button class="btn-primary" (click)="cambioDiseno()">
         vertical
       </button>
      </li>
     </ul>
   </div>
-</nav>
-
+</nav> -->
 <div class="max-centered">
+  <div class="d-flexm justify-content-between pt-3" style="padding-left: 1rem;padding-right: 1rem;">
+    <div>
+      <p class="mb-0 fz-24">
+        Previous Rulings
+      </p>
+    </div>
+    <div>
+
+      <select name="" id="" [formControl]="diseno" class="b-select text-align-last" (change)="cambioDiseno()">
+        <option class="b-select" value="">Select one Option</option>
+        <option  class="b-select" value="1">List</option>
+        <option  class="b-select" value="2">Grid</option>
+      </select>
+    </div>
+  </div>
 
   <main role="main" class="flex-wrap-media d-flex align-items-center justify-media overflow-auto" [ngClass]="{'flex-column': vertical, 'flex-initial':horizontal}">
       <!-- Start: Implementation -->
-      <div style="min-width: 300px;" class="mx-xl-3 mx-lg-3 mx-md-3 mx-sm-1 mx-3 mb-3 linear" [ngClass]="{'col-personalizado':grid, 'col-12':list, 'col-xl-12':list, 'col-lg-12':list, 'col-md-12':list, 'çol-sm-12':list}" *ngFor="let persona of data; let i = index">
+      <div style="min-width: 300px;" class="mx-m mx-sm-1 mb-3 linear w-100 mh-300m" [ngClass]="{'col-personalizado':grid, 'wm-100':list}" *ngFor="let persona of data; let i = index">
         
-        <div class="featured-card__content bg-pro" [ngStyle]="{'background-image': 'url(' + persona.picture + ')'}">
-          <div class="d-flex">
-            <div class="content-information">
+        <div class="featured-card__content position-relative mh-300m {{bg_conditional}}" [ngStyle]="{'background-image': 'url(' + persona.picture + ')'}">
+          <div class="position-absolute verde p-7 {{orientation}} {{py_2}} left-0"  *ngIf="persona.votes.positive > persona.votes.negative">
+            <img class="{{tam_img}}" src="assets/img/thumbs-up.svg" alt="thumbs up" />
+          </div>
+          <div class="position-absolute naranja p-7 left-0 {{orientation}} {{py_2}}"  *ngIf="persona.votes.negative > persona.votes.positive">
+            <img class="{{tam_img}}" src="assets/img/thumbs-down.svg" alt="thumbs up" />
+          </div>
+          <div class="d-flex flex-wrap mh-300m align-items-end" [ngClass]="{'pb-36': grid, 'pb-none':list}">
+            <div class="col-media" [ngClass]="{ 'col-probando': grid, 'new-col':list,'desaparece':list }">
+              
+            </div>
+            <div class="content-information col-media pl-12" [ngClass]="{ 'col-probando': grid, 'new-col':list,'agranda':list }">
 
-              <h2 class="featured-card__title white">{{persona.name}}</h2>
+              <h2 class="featured-card__title white text-descripcion" *ngIf="normal">{{persona.name}}</h2>
              
-              <p class="featured-card__desc">
+              <p class="featured-card__desc" *ngIf="normal">
               </p>
-              <p class="text-descripcion">
+              <p class="featured-card__desc" *ngIf="!normal">
+              </p>
+              <h2 class="featured-card__title white text-descripcion" *ngIf="!normal">{{persona.name}}</h2>
+             
+              <!-- <p>
                 {{persona.description}}
   
+              </p> -->
+              <p class="mb-0">
+                Vestibulum diam ante, porttitor a odio eget, rhoncus neque. Aenean eu velit…
               </p>
-             <div class="d-flex">
-               <p>
+             <div class="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none">
+              <!--  <p>
   
                  Category:
                </p>
@@ -92,28 +122,31 @@
               <p>
                  {{persona.category}}
   
-               </p>
+               </p> -->
                <br>
               </div>
-              <p *ngIf="votosBolean[i] == true">
-                Thanks for vote
-              </p>
+              
             </div>
 
-            <div class="d-flex justify-content-end mh-m">
-  
+            <div class="d-flex justify-content-end mh-m col-media align-self-center my-xl-0 my-lg-0 my-md-0 my-sm-3 my-3 " [ngClass]="{ 'col-probando': grid, 'new-col':list,'agranda':list }" >
+                
               <button *ngIf="votosBolean[i] == false" [id]="'positivo' + i"  class="icon-button px-10 py-1" (click)="positivo(i)" aria-label="thumbs up">
                   <img class="img-button" src="assets/img/thumbs-up.svg" alt="thumbs up" />
               </button>
               <button *ngIf="votosBolean[i] == false" [id]="'negativo' + i" class="icon-button ml-12 px-10 py-1" (click)="negativo(i)" aria-label="thumbs down">
                 <img src="assets/img/thumbs-down.svg"  class=" img-button" alt="thumbs down" />
               </button>
-              <button *ngIf="votosBolean[i] == false" class="btn btn-black ml-12" disabled (click)="votar(i)" [id]="'a' + i" >
-                  Vote Now
+              <div>
+                <p *ngIf="votosBolean[i] == true" class="mb-12">
+                  Thanks for vote
+                </p>
+                <button *ngIf="votosBolean[i] == false" class="btn btn-black ml-12" disabled (click)="votar(i)" [id]="'a' + i" >
+                    Vote Now
+                </button>
+                <button *ngIf="votosBolean[i] == true" class="btn btn-black" (click)="voteAgain(i)" [id]="'aa' + i">
+                  Vote Again
               </button>
-              <button *ngIf="votosBolean[i] == true" class="btn btn-black" (click)="voteAgain(i)" [id]="'aa' + i">
-                Vote Again
-            </button>
+              </div>
             </div>
           </div>
             <!-- <div class="d-flex">
@@ -126,17 +159,23 @@
             </div> -->
             <div class="featured-card__buttons">
               <div class="d-flex w-100">
-                <div class="progeso d-flex align-items-center py-11m" [style.width.%]="((persona.votes.positive*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)">
-                  <img src="assets/img/thumbs-up.svg" class="ms-3 img-pulgares" alt="thumbs up" />
-                  <p class=" white mb-0">
-                  {{((persona.votes.positive*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)}} %
-                  </p>
+                <div class="progeso d-flex align-items-center py-11m ps-3 flex-wrap position-relative py-3" [style.width.%]="((persona.votes.positive*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)">
+                  <div class="position-absolute d-flex">
+
+                    <img src="assets/img/thumbs-up.svg" class="me-2 img-pulgares" alt="thumbs up" />
+                    <p class=" white mb-0">
+                    {{((persona.votes.positive*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)}}%
+                    </p>
+                  </div>
                 </div>
-                <div class="progreso2 d-flex align-items-center justify-content-end" [style.width.%]="((persona.votes.negative*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)">
-                  <p class="white mb-0">
-                   {{math.abs(((persona.votes.negative*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2))}} %
-                  </p>
-                  <img src="assets/img/thumbs-down.svg" class="me-3 img-pulgares" alt="thumbs down" />
+                <div class="progreso2 d-flex align-items-center justify-content-end flex-wrap pe-3 position-relative" [style.width.%]="((persona.votes.negative*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2)">
+                  <div class="position-absolute d-flex">
+
+                    <p class="white mb-0">
+                     {{math.abs(((persona.votes.negative*100)/(persona.votes.positive + persona.votes.negative)).toFixed(2))}}%
+                    </p>
+                    <img src="assets/img/thumbs-down.svg" class="ms-2 img-pulgares" alt="thumbs down" />
+                  </div>
                 </div>
               </div>
             </div>

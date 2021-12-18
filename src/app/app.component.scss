@@ -8,7 +8,24 @@
   font-size: 18px;
 }
 .img-pulgares{
+  width: 100%;
+  max-width: 23px;
+}
+.img-pulgares2{
   width: 23px;
+}
+.media-pulgares{
+  width: 16px;
+}
+.top-94{
+  top: 94px;
+}
+.pym-2{
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+.pl-12{
+  padding-left: 12px;
 }
 .py-11m{
   padding-top: 11px;
@@ -29,6 +46,10 @@ color:white
 .borde-blanco{
   border: 1px solid white;
 }
+.col-media{
+  flex: 0 0 auto;
+  width:33%;
+}
 .ml-12{
   margin-left: 12px;
 }
@@ -42,156 +63,42 @@ color:white
 .mh-m{
   max-height: 45px;
 }
-/* .text-descripcion{
-  overflow: hidden;
-width:100px;
-display: -webkit-box;
--webkit-line-clamp: 3;
--webkit-box-orient: vertical;
-} */
-#menuToggle
-{
-  display: block;
-  position: fixed;
-  top: 50px;
-  right: 50px;
-  
-  z-index: 1;
-  
-  -webkit-user-select: none;
-  user-select: none;
+.new-col{
+  flex: 0 0 auto;
+  width: 33%;
+}
+.col-probando{
+  flex: 0 0 auto;
+  width: 100%;
 }
 
-#menuToggle input
-{
-  display: block;
-  width: 40px;
-  height: 32px;
-  position: absolute;
-  top: -7px;
-  left: -5px;
-  
-  cursor: pointer;
-  
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
-  
-  -webkit-touch-callout: none;
+.text-descripcion{
+  text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+width:300px; // some width
+}
+.mx-13{
+  margin-left: 13.5px;
+  margin-right: 13.5px;
+}
+.bg-pro{
+  background-repeat: no-repeat;
+  background-size: 300px 100%;
+  background-clip: border-box;
+  /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, #888888 19.79%, #666666 50%, rgba(51, 51, 51, 0.6) 71.88%); */
+}
+.bg-pro2{
+  background-repeat: no-repeat;
+  background-size: 348px 100%;
+  background-clip: border-box;
+  /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, #888888 19.79%, #666666 50%, rgba(51, 51, 51, 0.6) 71.88%); */
 }
 
-/*
- * Just a quick hamburger
- */
-#menuToggle span
-{
-  display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
-  position: relative;
-  
-  background: #cdcdcd;
-  border-radius: 3px;
-  
-  z-index: 1;
-  
-  transform-origin: 4px 0px;
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              opacity 0.55s ease;
-}
-
-#menuToggle span:first-child
-{
-  transform-origin: 0% 0%;
-}
-
-#menuToggle span:nth-last-child(2)
-{
-  transform-origin: 0% 100%;
-}
-
-/* 
- * Transform all the slices of hamburger
- * into a crossmark.
- */
-#menuToggle input:checked ~ span
-{
-  opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
-  background: #232323;
-}
-
-/*
- * But let's hide the middle one.
- */
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-/*
- * Ohyeah and the last one should go the other direction
- */
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
-  opacity: 1;
-  transform: rotate(-45deg) translate(0, -1px);
-}
-
-/*
- * Make this absolute positioned
- * at the top left of the screen
- */
-#menu
-{
-  position: absolute;
-  width: 300px;
-  margin: -100px 0 0 0;
-  padding: 50px;
-  padding-top: 125px;
-  right: -100px;
-  
-  background: #ededed;
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  /* to stop flickering of text in safari */
-  
-  transform-origin: 0% 0%;
-  transform: translate(100%, 0);
-  
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-}
-
-#menu li
-{
-  padding: 10px 0;
-  font-size: 22px;
-}
-
-/*
- * And let's fade it in from the left
- */
-#menuToggle input:checked ~ ul
-{
-  transform: none;
-  opacity: 1;
-}
-
-@media screen and (max-width: 768px) {
-  #menu {
-    transform: none;
-    opacity: 0;
-
-    transition: opacity 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-  }
-}
 .col-personalizado{
   flex: 0 0 auto;
   width: 33.3%;
-  max-width: 300px;
+  max-width: 348px;
 }
 .flex-wrap-media{
   flex-wrap: wrap;
@@ -199,12 +106,71 @@ display: -webkit-box;
 .justify-media{
   justify-content: center;
 }
+.pb-36{
+  padding-bottom: 36px;
+}
+.pb-none{
+  padding-bottom: none;
+}
+.mb-12{
+  margin-bottom: 12px;
+}
+.b-select{
+  border: 2px solid #333333;
+  border-radius: 0px;
+  background-color: white;
+}
+.wm-100{
+  width: 100%;
+}
+.linear{
+  background: linear-gradient(-268deg, rgba(0, 0, 0, 0.0001) 0%, #888888 19.79%, #666666 50%, rgba(51, 51, 51, 0.6) 71.88%);
+  background-size: calc(100% - 250px) 100% ;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  
+}
+.verde{
+  
+  background: rgba(60, 187, 180, 0.8);
+}
+.naranja{
+  background: #FBBD4A;
+}
+.p-7{
+  padding: 7px;
+}
+.topm-0{
+  top: 0px;
+}
+.left-0{
+  left: 0px;
+}
+.text-align-last{
+  text-align-last: center;
+}
+.fz-24{
+  font-size: 24px;
+}
+.d-flexm{
+  display: flex;
+}
+@media(max-width:1097px){
+  .top-94{
+    top: 57px;
+  }
+  .pym-2{
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+  }
+}
 @media(max-width:768px){
   .col-personalizado{
     width: 50%;
   }
   .img-pulgares{
-    width: 15px;
+    width: 100%;
+    max-width: 15px;
   }
   .py-11m{
     padding-top: 7px;
@@ -217,6 +183,34 @@ display: -webkit-box;
     padding-right: 7px;
     padding-left: 7px;
   }
+  .bg-pro{
+    background-size: 216px 100%;
+
+  }
+  .linear{
+    background-size: calc(100% - 167px) 100%;
+  }
+}
+@media(max-width:767px){
+  .top-94{
+    top: 38px;
+  }
+  .pl-12{
+    padding-left: 22px;
+  }
+}
+@media(max-width:732px){
+  .d-flexm{
+    display: none;
+  }
+}
+@media(max-width:527px){
+  .desaparece{
+    width: 10%;
+  }
+  .agranda{
+    width: 40%;
+  }
 }
 @media(max-width:425px){
   .flex-wrap-media{
@@ -225,10 +219,43 @@ display: -webkit-box;
   .justify-media{
     justify-content:initial ;
   }
+  .mh-300m{
+    min-height: 264px;
+  }
+  .bg-pro2{
+    background-size: 100% 100%;
+  }
+  .pb-36{
+    padding-bottom: 0px;
+  }
+  .mx-m{
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+  .bg-pro {
+    background-size: 100% 100%;
+}
+.top-94{
+  top: 121px;
+}
+.pym-2{
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+.topm-0{
+  top: 92px;
+}
+.img-pulgares2{
+  width: 16px;
+}
 }
 @media(max-width:425px) and (max-width:614px){
   .col-personalizado{
     width: 100%;
+  }
+  .col-media{
+    flex: 0 0 auto;
+    width:100%
   }
 }
 .progeso{

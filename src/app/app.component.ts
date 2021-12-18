@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,15 @@ export class AppComponent implements OnInit	 {
   list:boolean = false;
   grid:boolean = false;
   math:any = Math;
+  diseno = new FormControl();
+  bg_conditional = 'bg-pro';
+  normal:boolean = true;
+  tam_img:any = 'img-pulgares2';
+  orientation:any = 'topm-0';
+  py_2 = '';
   ngOnInit(): void {
    if(localStorage.getItem('datos')){
+     console.log('hola')
      this.data = JSON.parse(this.datos || '{}')
       this.data.forEach((element:any) => {
         this.votosBolean.push(false)
@@ -101,10 +109,13 @@ export class AppComponent implements OnInit	 {
   }
   subir(i:any){
     this.data[i].votes.positive =   this.data[i].votes.positive + 1
+    localStorage.removeItem('datos')
    localStorage.setItem('datos', JSON.stringify(this.data)) 
   }
   bajar(i:any){
     this.data[i].votes.negative = this.data[i].votes.negative + 1
+    localStorage.removeItem('datos')
+    localStorage.setItem('datos', JSON.stringify(this.data)) 
     console.log (this.data[i])
   }
   positivo(i:any){
@@ -163,18 +174,28 @@ export class AppComponent implements OnInit	 {
    let boton = document.getElementById(`a${i}`);
    boton?.setAttribute('disabled', '');
   }
-  cambioDiseno(estilo:any){
-    if(estilo == 'horizontal'){
+  cambioDiseno(){
+    if(this.diseno.value == 1 ){
     /*   this.horizontal = true;
       this.vertical = false; */
-      this.list = false;
-      this.grid = true;
-    }else if(estilo == 'vertical'){
+      this.list = true;
+      this.grid = false;
+      this.normal = true
+      this.bg_conditional = 'bg-pro';
+      this.orientation = 'topm-0';
+      this.tam_img = 'img-pulgares2';
+      this.py_2 = '';
+    }else if(this.diseno.value == 2){
       console.log('hola')
       /* this.vertical = true;
       this.horizontal = false; */
-      this.list = true;
-      this.grid = false
+      this.list = false;
+      this.grid = true;
+      this.normal = false;
+      this.bg_conditional = 'bg-pro2';
+      this.orientation = 'top-94';
+      this.tam_img = 'media-pulgares';
+      this.py_2 = 'pym-2'
     }
   }
 }
