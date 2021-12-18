@@ -5,4 +5,5 @@ RUN npm install
 RUN npm run build -- --prod
 
 FROM nginx:stable
-COPY --from=node /app/dist/prueba_zemoga /usr/share/nginx/html 
+COPY --from=node ./app/dist/zemogaPrueba /usr/share/nginx/html 
+COPY ./ngx-custom.conf /etc/nginx/conf.d/default.conf

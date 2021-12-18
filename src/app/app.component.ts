@@ -7,6 +7,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit	 {
+
+  //Al ser la aplicacion no tan compleja se decidio realizar en el componente app de angular (para aplicaciones reales se recomienda realizar una estructura modular con lazyloading)
+  //Declaramos todas nuestras variables
   title = 'zemogaPrueba';
   data:any | null = '';
   datos = localStorage.getItem('datos');
@@ -24,7 +27,9 @@ export class AppComponent implements OnInit	 {
   tam_img:any = 'img-pulgares2';
   orientation:any = 'topm-0';
   py_2 = '';
+
   ngOnInit(): void {
+    //En el metodo ngoninit preguntamos si en el localstorage del navegador existe una varible llamada datos, si existe la trae y si no toma data como un arreglo predefinido (Esta parte es la que simula traer datos desde un backend, por cuestiones de salud no pude realizar el ejemplo con json.bd)
    if(localStorage.getItem('datos')){
      console.log('hola')
      this.data = JSON.parse(this.datos || '{}')
@@ -107,6 +112,7 @@ export class AppComponent implements OnInit	 {
 
     
   }
+  //modificamos el arreglo original y lo enviamos al localstorage para la persistencia de la data
   subir(i:any){
     this.data[i].votes.positive =   this.data[i].votes.positive + 1
     localStorage.removeItem('datos')
@@ -118,11 +124,11 @@ export class AppComponent implements OnInit	 {
     localStorage.setItem('datos', JSON.stringify(this.data)) 
     console.log (this.data[i])
   }
+  //preguntamos por cada boton (son x cantidad de botones segun la longitud del array, entonces por cada iteracion tenemos un id diferente del elemento html, preguntamos por los botones de up y dawn para agregar la clase de borde blanco y si ya la tiene se le quita.)
   positivo(i:any){
     let boton = document.getElementById(`a${i}`);
     boton?.removeAttribute('disabled');
-    boton?.classList.remove('btn-danger')
-    boton?.classList.add('btn-primary')
+  
     let arriba = document.getElementById(`positivo${i}`);
     let abajo = document.getElementById(`negativo${i}`);
     console.log(arriba,abajo)
@@ -143,8 +149,7 @@ export class AppComponent implements OnInit	 {
     let boton = document.getElementById(`a${i}`);
     console.log(boton)
     boton?.removeAttribute('disabled');
-   boton?.classList.remove('btn-primary')
-    boton?.classList.add('btn-danger')
+  
     let arriba = document.getElementById(`positivo${i}`);
     let abajo = document.getElementById(`negativo${i}`)
     console.log(arriba,abajo)
@@ -160,6 +165,7 @@ export class AppComponent implements OnInit	 {
       this.up = false
     }
   }
+  //Aqui es donde se hace la magia, esta funcion depende de las dos de arriba, si la persona elige positivo o negativo y por medio de un ngif se renderiza el texto de gracias por votar y el boton de vote again
   votar(i:any){
    this.votosBolean[i] = true
    if(this.up){
@@ -169,11 +175,13 @@ export class AppComponent implements OnInit	 {
     }
     console.log(this.data)
   }
+  //Esta funcion renderiza de nuevo el boton de votar ya previamente seleccionado para votar
   voteAgain(i:any){
    this.votosBolean[i] = false
    let boton = document.getElementById(`a${i}`);
    boton?.setAttribute('disabled', '');
   }
+  //Con esta funcion se cambia de list a grid
   cambioDiseno(){
     if(this.diseno.value == 1 ){
     /*   this.horizontal = true;
