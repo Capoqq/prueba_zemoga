@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Docker container
 
-docker build . -t prueba_zemoga:latest
-docker run -d -p 8080:80 prueba_zemoga:latest
+- docker build . -t prueba_zemoga:latest
+- docker run -d -p 8080:80 prueba_zemoga:latest
 
-open your browser in localhost:8080 and fun
+open your browser in `http://localhost:8080/`and fun
